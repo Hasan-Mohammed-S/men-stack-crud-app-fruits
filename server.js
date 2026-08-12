@@ -41,9 +41,12 @@ app.get('/fruits', async(rep, res) => {
 app.get('/fruits', async(req, res => {
 
     try {
-        const
-
-    } catch {}
+        const fruits = await Fruit.find();
+        res.send(fruits);
+    } catch (err) {
+        console.log(err);
+        res.send('failed to get all fruits');
+    }
 
 
 }))
