@@ -1,10 +1,11 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const app = express();
 
 const Fruit = require('./models/fruit');
+app.use(express.urlencoded({ extended: false }))
 
-const app = express();
 
 mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on('connected', () => {
@@ -19,8 +20,8 @@ app.get("/fruits/new", (req, res) => {
     res.render("fruits/new.ejs");
 });
 
-app.get('/fruits', async(rep, res) => {
-
+app.post('/fruits', async(req, res) => {
+    console.log(req.body)
     try {
         if (req.body.isReadyToEat === "on") {
             req.body.isReadyToEat = true;
@@ -28,7 +29,7 @@ app.get('/fruits', async(rep, res) => {
             req.body.isReadyToEat = false;
         }
         await Fruit.create(req.body);
-        res.redirect("/fruits/new");
+        res.redirect("/fruits");
     } catch (err) {
 
         console.log(err);
@@ -38,7 +39,7 @@ app.get('/fruits', async(rep, res) => {
 
 });
 
-app.get('/fruits', async(req, res => {
+app.get('/fruits', async(req, res) => {
 
     try {
         const fruits = await Fruit.find();
@@ -49,7 +50,7 @@ app.get('/fruits', async(req, res => {
     }
 
 
-}))
+});
 app.listen(3000, () => {
     console.log('server is running!!!!');
 });
