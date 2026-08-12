@@ -1,0 +1,52 @@
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+
+const Fruit = require('./models/fruit');
+
+const app = express();
+
+mongoose.connect(process.env.MONGODB_URI);
+mongoose.connection.on('connected', () => {
+    console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
+});
+
+app.get('/', (req, res) => {
+    res.render('index.ejs');
+});
+
+app.get("/fruits/new", (req, res) => {
+    res.render("fruits/new.ejs");
+});
+
+app.get('/fruits', async(rep, res) => {
+
+    try {
+        if (req.body.isReadyToEat === "on") {
+            req.body.isReadyToEat = true;
+        } else {
+            req.body.isReadyToEat = false;
+        }
+        await Fruit.create(req.body);
+        res.redirect("/fruits/new");
+    } catch (err) {
+
+        console.log(err);
+        res.send('failed to create')
+
+    }
+
+});
+
+app.get('/fruits', async(req, res => {
+
+    try {
+        const
+
+    } catch {}
+
+
+}))
+app.listen(3000, () => {
+    console.log('server is running!!!!');
+});
