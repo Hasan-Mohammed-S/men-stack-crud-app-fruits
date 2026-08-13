@@ -8,6 +8,10 @@ const app = express();
 const methodOverride = require("method-override"); // new
 const morgan = require("morgan"); // new
 
+
+const path = require("path");
+
+
 app.use(methodOverride("_method")); // new
 app.use(morgan("dev")); //new
 
@@ -99,7 +103,21 @@ app.put('/fruits/:fruitId', async(req, res) => {
     } catch (err) {
         console.log(err)
     }
-})
+});
+
+
+
+app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
+// app.use(morgan('dev'));
+
+// new code below this line
+app.use(express.static(path.join(__dirname, "public")));
+
+// new code above this line
+app.get("/", async(req, res) => {
+    res.render("index.ejs");
+});
 
 app.listen(3000, () => {
     console.log('server is running!!!!');

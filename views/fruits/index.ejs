@@ -6,12 +6,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+
     <title>Fruits Index</title>
 </head>
 
 <body>
-    <h1>All Fruits</h1>
-    <a href="/fruits/new">Add New Fruit</a>
+    <div class="index-header-div">
+        <h1>All Fruits</h1>
+        <a class="add-fruit" href="/fruits/new">Add fruit</a>
+    </div>
     <ul>
         <% fruits.forEach(fruit => { %>
             <li>
@@ -21,6 +25,10 @@
             </li>
             <% }); %>
     </ul>
+
+    <!-- index.ejs fruits -->
+
+    <a class="fruits-index-link" href="/fruits">Browse Fruits</a>
 </body>
 
 </html>

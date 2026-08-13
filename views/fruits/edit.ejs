@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+
     <title>Edit
         <%= fruit.name %>
     </title>
@@ -24,6 +26,32 @@
         <% } %> />
 
             <button type="submit">Update Fruit</button>
+
+            <!-- edit.ejs / show.ejs -->
+
+            <a class="fruits-index-link" href="/fruits">
+                <div class="index-link-text">Back to Fruits</div>
+            </a>
+
+            <div class="checkbox-div">
+                <label for="ready-to-eat">Ready to Eat?</label>
+                <input type="checkbox" name="isReadyToEat" id="ready-to-eat" />
+            </div>
+
+
+
+            <div class="fruit-actions">
+                <form class="delete-form" action="/fruits/<%=fruit._id%>?_method=DELETE" method="POST">
+                    <button class="delete-button" type="submit">
+      Delete <%= fruit.name %>
+    </button>
+                </form>
+                <a class="edit-link" href="/fruits/<%= fruit._id %>/edit">
+                    <div class="edit-text">Edit
+                        <%= fruit.name %>
+                    </div>
+                </a>
+            </div>
     </form>
 </body>
 

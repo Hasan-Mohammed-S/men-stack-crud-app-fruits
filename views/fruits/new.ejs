@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+
     <title>Create a Fruit</title>
 </head>
 
@@ -12,11 +14,16 @@
     <h1>Create a New Fruit!</h1>
     <a href="/fruits/">Back to Fruits</a>
     <form action="/fruits" method="POST">
-        <label for="name">Naxme:</label>
+        <label for="name">Name:</label>
         <input type="text" name="name" id="name" />
 
-        <label for="isReadyToEat">Ready to Eat?</label>
-        <input type="checkbox" name="isReadyToEat" id="isReadyToEat" />
+
+
+        <div class="checkbox-div">
+            <label for="ready-to-eat">Ready to Eat?</label>
+            <input type="checkbox" name="isReadyToEat" id="ready-to-eat" />
+        </div>
+
 
         <button type="submit">Add Fruit</button>
     </form>
